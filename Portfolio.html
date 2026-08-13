@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Portfolio.css">
+</head>
+<body>
+
+  <header>
+    <nav class="wrap">
+      <div class="logo"><img src="images/logo-sa.svg" alt="SA logo" style="height: 75px; width: 75px;"></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Available for new opportunities</span>
+      <h1>Sufyan Ahmad builds<br>interfaces with <span class="accent">precision.</span></h1>
+      <p class="lead">Frontend developer focused on clean systems, thoughtful interaction design, and code that holds up under scrutiny.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View projects</a>
+        <a href="#contact" class="btn btn-ghost">Say hello</a>
+      </div>
+      <div class="hero-meta">
+        <div>based in<span>Mandi Bahauddin, Pakistan</span></div>
+        <div>focus<span>HTML · CSS · UI Systems</span></div>
+        <div>status<span>Open to internships</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2>Detail-oriented, self-taught, and still curious.</h2>
+        <p>I started building websites by taking other people's apart in the browser inspector — pulling on one CSS rule to see what would break. That habit never really left: I still care more about the six pixels of spacing than most people notice.</p>
+        <p>Right now I'm building out my frontend skills through hands-on projects, with a focus on layouts that hold together at every screen size and interactions that feel deliberate rather than decorative.</p>
+      </div>
+      <div class="spec-sheet">
+        <div class="spec-title">// profile.spec</div>
+        <div class="spec-row"><span class="k">role</span><span class="v">Frontend Developer</span></div>
+        <div class="spec-row"><span class="k">experience</span><span class="v">Intern-level, growing fast</span></div>
+        <div class="spec-row"><span class="k">stack</span><span class="v">HTML · CSS · Git</span></div>
+        <div class="spec-row"><span class="k">strength</span><span class="v">Layout & responsive design</span></div>
+        <div class="spec-row"><span class="k">availability</span><span class="v">Remote / Internship</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <span class="eyebrow">skills</span>
+      <h2 style="font-size:32px; margin-bottom:44px;">What I work with.</h2>
+
+      <div class="skills-cat">
+        <span class="cat-label">core</span>
+        <div class="pill-row">
+          <span class="pill">HTML5</span>
+          <span class="pill">CSS3</span>
+          <span class="pill">Responsive Design</span>
+          <span class="pill">Flexbox</span>
+          <span class="pill">CSS Grid</span>
+        </div>
+      </div>
+
+      <div class="skills-cat">
+        <span class="cat-label">tools</span>
+        <div class="pill-row">
+          <span class="pill">Git & GitHub</span>
+          <span class="pill">VS Code</span>
+          <span class="pill">Figma</span>
+          <span class="pill">Chrome DevTools</span>
+        </div>
+      </div>
+
+      <div class="skills-cat">
+        <span class="cat-label">currently learning</span>
+        <div class="pill-row">
+          <span class="pill">JavaScript</span>
+          <span class="pill">Accessibility (a11y)</span>
+          <span class="pill">Animation & Motion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <span class="eyebrow">projects</span>
+      <h2 style="font-size:32px;">Selected work.</h2>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <span class="project-index mono">proj_01</span>
+          <h3>Personal Portfolio</h3>
+          <p>A single-page portfolio built from scratch to practice layout systems, typography pairing, and pure-CSS interactivity.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Responsive</span></div>
+          <a href="#" class="project-link">View project <span class="arrow">↗</span></a>
+        </div>
+
+        <div class="project-card">
+          <span class="project-index mono">proj_02</span>
+          <h3>Landing Page</h3>
+          <p>A product landing page with a hero section, feature grid, and call-to-action flow built using Flexbox and Grid.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Grid</span></div>
+          <a href="#" class="project-link">View project <span class="arrow">↗</span></a>
+        </div>
+
+        <div class="project-card">
+          <span class="project-index mono">proj_03</span>
+          <h3>Image Gallery</h3>
+          <p>A responsive image grid with hover-reveal captions and smooth zoom transitions, kept intentionally minimal.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Hover FX</span></div>
+          <a href="#" class="project-link">View project <span class="arrow">↗</span></a>
+        </div>
+
+        <div class="project-card">
+          <span class="project-index mono">proj_04</span>
+          <h3>Component Practice</h3>
+          <p>A small library of reusable UI pieces — buttons, cards, and form fields — used to sharpen consistent design tokens.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">UI Kit</span></div>
+          <a href="#" class="project-link">View project <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <span class="eyebrow">contact</span>
+      <h2>Let's build something.</h2>
+      <p>Open to internship opportunities, collaborations, and honest feedback on my work. The fastest way to reach me is email.</p>
+      <div class="contact-card">
+        <div class="mono" style="font-size:13px; color:var(--text-muted); margin-bottom:6px;">reach me at</div>
+        <a href="mailto:alex.rivera@example.com" style="font-size:20px; font-weight:500;">sufyantarar643@gmail.com</a>
+        <div class="contact-links">
+          <a href="https://github.com/sufyan643" class="btn btn-ghost"  rel="noopener noreferrer" >GitHub</a>
+          <a href="https://www.linkedin.com/in/sufyan-tarar-206101359/"  target="_blank"  rel="noopener noreferrer"    class="btn btn-ghost">LinkedIn</a>
+          <a href="#" class="btn btn-ghost">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© 2026 Sufyan Ahmad — built with HTML & CSS</div>
+  </footer>
+
+</body>
+</html>

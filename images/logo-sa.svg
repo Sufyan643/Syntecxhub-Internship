@@ -1,0 +1,23 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>SA logo</title>
+<desc>Monogram logo with the letters S A in coral, framed by mint angle brackets, on a dark navy rounded square background.</desc>
+<defs>
+<style>
+  .bg{ fill:#10131a; }
+  .ring{ fill:none; stroke:#2a3040; stroke-width:2; }
+  .bracket{ fill:none; stroke:#6fe3c4; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+  .letters{ font-family:'Space Grotesk','Segoe UI',sans-serif; font-weight:700; font-size:84px; fill:#ff6b4a; }
+  .dot{ fill:#6fe3c4; }
+</style>
+</defs>
+
+<rect class="bg" x="4" y="4" width="232" height="232" rx="42"/>
+<rect class="ring" x="4" y="4" width="232" height="232" rx="42"/>
+
+<path class="bracket" d="M64 78 L38 120 L64 162"/>
+<path class="bracket" d="M176 78 L202 120 L176 162"/>
+
+<text class="letters" x="120" y="150" text-anchor="middle">SA</text>
+
+<circle class="dot" cx="120" cy="196" r="4"/>
+</svg>
