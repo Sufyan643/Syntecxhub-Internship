@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal / Popup Window</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Modal.css">
+</head>
+<body>
+
+  <main class="page">
+    <span class="eyebrow">Modal component demo</span>
+    <h1>One button. One clean popup.</h1>
+    <p class="lead">A reusable modal window built with plain HTML, CSS, and JavaScript — overlay backdrop, smooth entry/exit animation, and a working form inside.</p>
+    <button id="openModalBtn" class="btn btn-primary">Join the waitlist</button>
+    <div class="footnote">Try: click outside the card, the × button, or press Esc</div>
+  </main>
+
+  <!-- ============ Modal ============ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">✕</button>
+
+      <div id="modalFormView" class="modal-form">
+        <div class="modal-icon">✉</div>
+        <h2 id="modalTitle">Join the waitlist</h2>
+        <p>Be the first to know when we open up new spots. No spam, just one email when it matters.</p>
+
+        <form id="waitlistForm">
+          <div class="form-group">
+            <label for="nameInput">Full name</label>
+            <input type="text" id="nameInput" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="emailInput">Email address</label>
+            <input type="email" id="emailInput" name="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Notify me</button>
+          </div>
+        </form>
+        <div class="modal-terms">By joining, you agree to receive one email. That's it.</div>
+      </div>
+
+      <div id="modalSuccessView" class="modal-success">
+        <div class="success-icon">✓</div>
+        <h2>You're on the list!</h2>
+        <p>We'll email you the moment a spot opens up. This popup will close itself in a moment.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="Modal.js"></script>
+</body>
+</html>

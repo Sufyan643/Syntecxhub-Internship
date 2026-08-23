@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Today's List — To-Do App</title>
+
+  <!-- Google Fonts: a handwritten display face paired with a clean body face -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="Todolist.css" />
+</head>
+<body>
+
+  <main class="page">
+    <section class="notebook" role="region" aria-label="To-do list">
+
+      <!-- Spiral binding, purely decorative -->
+      <div class="spiral" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <header class="notebook__header">
+        <h1 class="notebook__title">Today&rsquo;s List</h1>
+        <p class="notebook__date" id="todayDate"></p>
+      </header>
+
+      <!-- Add task form -->
+      <form class="add-form" id="addForm" autocomplete="off">
+        <label for="taskInput" class="sr-only">Write a new task</label>
+        <span class="add-form__icon" aria-hidden="true">✏️</span>
+        <input
+          type="text"
+          id="taskInput"
+          class="add-form__input"
+          placeholder="Write something down…"
+          maxlength="120"
+          required
+        />
+        <button type="submit" class="add-form__button" aria-label="Add task">
+          <span aria-hidden="true">＋</span>
+        </button>
+      </form>
+
+      <!-- Task list -->
+      <ul class="task-list" id="taskList"></ul>
+
+      <!-- Empty state -->
+      <p class="empty-state" id="emptyState">
+        <span aria-hidden="true">📝</span> Nothing here yet — jot something down.
+      </p>
+
+      <!-- Footer / summary bar -->
+      <footer class="notebook__footer">
+        <span class="task-count" id="taskCount">0 tasks</span>
+        <button type="button" class="clear-btn" id="clearCompleted">
+          🧹 Clear completed
+        </button>
+      </footer>
+
+    </section>
+
+    <p class="page__credit">Front-End Internship · Week 2 · Project 1 — To-Do List App</p>
+  </main>
+
+  <!-- Template for a single task row (cloned by JS) -->
+  <template id="taskTemplate">
+    <li class="task" data-id="">
+      <button type="button" class="task__check" aria-label="Mark task complete">
+        <svg class="task__check-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 12.5L9.5 18L20 6" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <span class="task__text"></span>
+      <button type="button" class="task__delete" aria-label="Delete task">🗑️</button>
+    </li>
+  </template>
+
+  <script src="Todolist.js"></script>
+</body>
+</html>

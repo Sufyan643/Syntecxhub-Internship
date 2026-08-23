@@ -1,0 +1,229 @@
+/* ==========================================================================
+   FAQ Accordion Widget — editorial, calm, professional
+   Design tokens
+   ========================================================================== */
+:root {
+  /* Colors */
+  --bg:            #F7F5F0;
+  --surface:       #FFFFFF;
+  --ink:           #1F2430;
+  --ink-soft:      #5B6270;
+  --accent:        #2F6F62;
+  --accent-soft:   #EAF2EF;
+  --divider:       #E6E2D8;
+  --shadow:        rgba(31, 36, 48, 0.06);
+
+  /* Type */
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Layout */
+  --radius: 12px;
+  --max-width: 680px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 64px 20px 80px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-color: rgba(47, 111, 98, 0.35);
+  text-underline-offset: 2px;
+}
+a:hover { text-decoration-color: var(--accent); }
+
+/* ==========================================================================
+   Page
+   ========================================================================== */
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.page__header {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.page__eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.page__title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.page__subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+/* ==========================================================================
+   Accordion shell
+   ========================================================================== */
+.accordion {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px var(--shadow);
+  overflow: hidden;
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--divider);
+}
+.accordion__item:last-child {
+  border-bottom: none;
+}
+
+.accordion__heading {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Trigger button
+   ========================================================================== */
+.accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 22px 24px;
+  transition: background 0.15s ease;
+}
+
+.accordion__trigger:hover {
+  background: var(--accent-soft);
+}
+
+.accordion__trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.accordion__index {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  width: 26px;
+}
+
+.accordion__question {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* Plus / minus icon that rotates open */
+.accordion__icon {
+  flex-shrink: 0;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.accordion__icon-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease;
+}
+
+.accordion__icon-line--h {
+  width: 14px;
+  height: 2px;
+}
+
+.accordion__icon-line--v {
+  width: 2px;
+  height: 14px;
+}
+
+.accordion__trigger[aria-expanded="true"] .accordion__icon-line--v {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Collapsible panel
+   Height is driven by JS (via a CSS custom property) so the transition
+   animates smoothly between 0 and the answer's real content height.
+   ========================================================================== */
+.accordion__panel {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.28s ease;
+}
+
+.accordion__panel-inner {
+  padding: 0 24px 22px 66px;
+}
+
+.accordion__answer {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 560px) {
+  body { padding: 40px 16px 60px; }
+  .page__title { font-size: 30px; }
+  .accordion__trigger { padding: 18px 16px; gap: 12px; }
+  .accordion__question { font-size: 16px; }
+  .accordion__panel-inner { padding: 0 16px 18px 42px; }
+  .accordion__index { width: 20px; font-size: 13px; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .accordion__panel,
+  .accordion__icon-line,
+  .accordion__trigger {
+    transition: none !important;
+  }
+}

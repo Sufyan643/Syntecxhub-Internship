@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequently Asked Questions — FAQ Accordion</title>
+
+  <!-- Google Fonts: an editorial serif for questions, a clean sans for answers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  
+  <link rel="stylesheet" href="FAQ.css" />
+</head>
+<body>
+
+  <main class="page">
+    <header class="page__header">
+      <p class="page__eyebrow">Help Center</p>
+      <h1 class="page__title">Frequently Asked Questions</h1>
+      <p class="page__subtitle">
+        Everything you need to know before you get started. Can't find your answer?
+        <a href="mailto:info@syntecxhub.com">Contact us</a>.
+      </p>
+    </header>
+
+    <!-- The accordion itself. Each item is a self-contained <li>
+         controlled by a button with aria-expanded, for accessibility. -->
+    <ul class="accordion" id="accordion"></ul>
+  </main>
+
+  <!-- Row template, cloned once per FAQ item by script.js -->
+  <template id="itemTemplate">
+    <li class="accordion__item">
+      <h3 class="accordion__heading">
+        <button type="button" class="accordion__trigger" aria-expanded="false">
+          <span class="accordion__index"></span>
+          <span class="accordion__question"></span>
+          <span class="accordion__icon" aria-hidden="true">
+            <span class="accordion__icon-line accordion__icon-line--v"></span>
+            <span class="accordion__icon-line accordion__icon-line--h"></span>
+          </span>
+        </button>
+      </h3>
+      <div class="accordion__panel">
+        <div class="accordion__panel-inner">
+          <p class="accordion__answer"></p>
+        </div>
+      </div>
+    </li>
+  </template>
+
+  <script src="FAQ.js"></script>
+</body>
+</html>

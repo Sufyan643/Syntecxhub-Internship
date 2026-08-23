@@ -1,0 +1,357 @@
+/* ==========================================================================
+   Today's List — a notebook-paper themed to-do app
+   Design tokens
+   ========================================================================== */
+:root {
+  /* Colors */
+  --paper:        #FBF7EC;
+  --paper-line:   #E4DFC9;
+  --margin-red:   #C1440E;
+  --ink:          #2B3A67;
+  --ink-soft:     #55618C;
+  --accent-sage:  #6E8F6A;
+  --accent-sage-soft: #E4ECDF;
+  --shadow:       rgba(43, 58, 103, 0.18);
+
+  /* Type */
+  --font-hand: 'Caveat', cursive;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Layout */
+  --radius: 14px;
+  --line-height-rule: 44px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, #f2ede0 0%, transparent 45%),
+    radial-gradient(circle at 85% 90%, #efe9d8 0%, transparent 40%),
+    #E9E3D3;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Page wrapper
+   ========================================================================== */
+.page {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.page__credit {
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Notebook card
+   ========================================================================== */
+.notebook {
+  position: relative;
+  width: 100%;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--line-height-rule) - 1px),
+      var(--paper-line) calc(var(--line-height-rule) - 1px),
+      var(--paper-line) var(--line-height-rule)
+    ),
+    var(--paper);
+  background-position: 0 118px, 0 0;
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px var(--shadow), 0 2px 6px rgba(43,58,103,0.10);
+  padding: 34px 26px 22px 46px;
+  border-left: 3px solid var(--margin-red);
+  overflow: hidden;
+}
+
+/* Spiral binding decoration along the top */
+.spiral {
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.spiral span {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #E9E3D3;
+  border: 2px solid #cfc8ac;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.notebook__header {
+  margin-bottom: 18px;
+}
+
+.notebook__title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--ink);
+  margin: 0;
+}
+
+.notebook__date {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--margin-red);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Add-task form
+   ========================================================================== */
+.add-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  padding: 8px 10px 8px 14px;
+  margin-bottom: 16px;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.add-form:focus-within {
+  border-color: var(--ink-soft);
+  box-shadow: 0 0 0 3px rgba(43, 58, 103, 0.12);
+}
+
+.add-form__icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.add-form__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  background: transparent;
+  padding: 6px 0;
+}
+
+.add-form__input::placeholder {
+  color: #A8A296;
+}
+
+.add-form__button {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+
+.add-form__button:hover { background: var(--ink-soft); }
+.add-form__button:active { transform: scale(0.92); }
+
+/* ==========================================================================
+   Task list
+   ========================================================================== */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--line-height-rule);
+  padding: 2px 0;
+  border-bottom: 1px solid transparent; /* visual rhythm comes from paper lines */
+  animation: taskIn 0.18s ease;
+}
+
+@keyframes taskIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.task__check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--ink-soft);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.task__check-icon {
+  width: 14px;
+  height: 14px;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.task.is-done .task__check {
+  background: var(--accent-sage);
+  border-color: var(--accent-sage);
+}
+.task.is-done .task__check-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.task__text {
+  flex: 1;
+  font-size: 16px;
+  color: var(--ink);
+  word-break: break-word;
+  transition: color 0.15s ease;
+}
+
+.task.is-done .task__text {
+  color: #9C9788;
+  text-decoration: line-through;
+  text-decoration-color: var(--accent-sage);
+}
+
+.task__delete {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  padding: 4px;
+}
+
+.task:hover .task__delete,
+.task:focus-within .task__delete {
+  opacity: 0.85;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   Empty state
+   ========================================================================== */
+.empty-state {
+  display: none;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+  padding: 18px 0 6px;
+}
+
+.notebook.is-empty .empty-state { display: block; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.notebook__footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--paper-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.clear-btn {
+  border: none;
+  background: transparent;
+  color: var(--margin-red);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.clear-btn:hover { background: rgba(193, 68, 14, 0.08); }
+.clear-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  background: none;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 400px) {
+  .notebook {
+    padding: 26px 18px 18px 34px;
+  }
+  .notebook__title { font-size: 36px; }
+  .add-form__input { font-size: 14px; }
+  .task__text { font-size: 15px; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .task, .add-form__button, .task__check, .task__delete {
+    animation: none !important;
+    transition: none !important;
+  }
+}
