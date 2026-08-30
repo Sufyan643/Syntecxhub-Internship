@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabbed Content Section</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Tabbed Content Section.css">
+</head>
+<body>
+
+  <div class="profile-card">
+
+    <div class="card-header">
+      <span class="card-eyebrow">Business profile</span>
+      <h1>Cedar & Co. Studio</h1>
+      <div class="card-meta">
+        <span>📍 Lahore, Pakistan</span>
+        <span>☕ Café & Co-work Space</span>
+        <span>⭐ 4.8 rating</span>
+      </div>
+    </div>
+
+    <div class="tab-nav" id="tabNav">
+      <button class="tab-btn is-active" data-tab="overviewPanel">Overview</button>
+      <button class="tab-btn" data-tab="infoPanel">Info</button>
+      <button class="tab-btn" data-tab="contactPanel">Contact</button>
+      <div class="tab-indicator" id="tabIndicator"></div>
+    </div>
+
+    <div class="tab-content">
+
+      <div class="tab-panel is-active" id="overviewPanel">
+        <p>Cedar & Co. is a quiet café and co-working studio built for people who need a change of scenery to get things done. Fast wifi, good coffee, and enough natural light to forget you're staring at a screen.</p>
+        <div class="tag-row">
+          <span class="tag">Free wifi</span>
+          <span class="tag">Quiet zone</span>
+          <span class="tag">Meeting rooms</span>
+          <span class="tag">Pet friendly</span>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="infoPanel">
+        <div class="info-row"><span class="k">Hours</span><span class="v">8:00 AM – 10:00 PM</span></div>
+        <div class="info-row"><span class="k">Established</span><span class="v">2022</span></div>
+        <div class="info-row"><span class="k">Category</span><span class="v">Café / Co-working</span></div>
+        <div class="info-row"><span class="k">Capacity</span><span class="v">45 seats</span></div>
+        <div class="info-row"><span class="k">Price range</span><span class="v">$$</span></div>
+      </div>
+
+      <div class="tab-panel" id="contactPanel">
+        <div class="contact-row">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="label">Email</div>
+            <div class="value">hello@cedarandco.example</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="label">Phone</div>
+            <div class="value">+92 300 1234567</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="label">Address</div>
+            <div class="value">MM Alam Road, Gulberg III, Lahore</div>
+          </div>
+        </div>
+        <button class="btn">Get directions</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="Tabbed Content Section.js"></script>
+</body>
+</html>

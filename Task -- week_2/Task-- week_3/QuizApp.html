@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="QuizApp.css">
+</head>
+<body>
+
+  <div class="quiz-app">
+
+    <div class="quiz-header">
+      <div class="quiz-header-top">
+        <div class="quiz-title"><span class="dot"></span>Frontend Basics Quiz</div>
+        <span class="quiz-counter mono" id="quizCounter">Question 1 of 5</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="quiz-body">
+
+      <!-- ============ Question screen ============ -->
+      <div class="question-screen" id="questionScreen">
+        <div class="question-text" id="questionText">Loading question...</div>
+        <div class="options-list" id="optionsList"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" id="nextBtn" disabled>Next question</button>
+        </div>
+      </div>
+
+      <!-- ============ Results screen ============ -->
+      <div class="result-screen is-hidden" id="resultScreen">
+        <div class="result-ring" id="resultRing" style="--pct:0;">
+          <span class="result-score" id="resultScore">0/0</span>
+        </div>
+        <h2>Quiz complete</h2>
+        <p class="result-message" id="resultMessage"></p>
+
+        <div class="review-list" id="reviewList"></div>
+
+        <button class="btn btn-outline" id="restartBtn">Restart quiz</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="QuizApp.js"></script>
+</body>
+</html>

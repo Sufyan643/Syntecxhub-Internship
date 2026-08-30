@@ -1,0 +1,198 @@
+/* ============ Design tokens ============ */
+:root{
+  --bg:            #0d1414;
+  --surface:       #142020;
+  --line:          #24332f;
+  --text:          #f5f3ee;
+  --text-muted:    #b9c2bf;
+  --gold:          #e8b34d;
+  --gold-soft:     #e8b34d33;
+  --radius:        18px;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter', sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 20px;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2{ font-family:'Fraunces', serif; font-weight:600; }
+
+.mono{ font-family:'JetBrains Mono', monospace; }
+
+/* ============ Page wrapper ============ */
+.page{
+  width:100%;
+  max-width:900px;
+}
+.page-header{
+  margin-bottom:22px;
+  text-align:center;
+}
+.eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  margin-bottom:10px;
+  display:inline-block;
+}
+.page-header h1{
+  font-size:clamp(24px, 4vw, 32px);
+}
+
+/* ============ Slider shell ============ */
+.slider{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--surface);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,0.6);
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:scale(1.04);
+  transition:opacity .7s ease, transform 1.1s ease;
+  pointer-events:none;
+}
+.slide.is-active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.slide-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(8,12,12,0.92) 0%, rgba(8,12,12,0.25) 45%, transparent 75%);
+  display:flex;
+  align-items:flex-end;
+  padding:36px 40px;
+}
+
+.slide-caption{
+  max-width:520px;
+}
+.slide-tag{
+  font-family:'JetBrains Mono', monospace;
+  font-size:11.5px;
+  color:var(--gold);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+  display:block;
+}
+.slide-title{
+  font-family:'Fraunces', serif;
+  font-size:clamp(24px, 4vw, 34px);
+  margin-bottom:8px;
+}
+.slide-desc{
+  color:var(--text-muted);
+  font-size:14.5px;
+  line-height:1.55;
+}
+
+/* ============ Arrow buttons ============ */
+.slider-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px; height:44px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(13,20,20,0.55);
+  backdrop-filter:blur(6px);
+  color:var(--text);
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all .2s ease;
+  z-index:5;
+}
+.slider-arrow:hover{
+  background:var(--gold);
+  color:#0d1414;
+  border-color:var(--gold);
+}
+.slider-arrow.prev{ left:18px; }
+.slider-arrow.next{ right:18px; }
+
+/* ============ Dot indicators ============ */
+.slider-dots{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:9px;
+  z-index:5;
+}
+.dot{
+  width:9px; height:9px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.35);
+  cursor:pointer;
+  transition:all .25s ease;
+  border:none;
+  padding:0;
+}
+.dot.is-active{
+  background:var(--gold);
+  width:26px;
+  border-radius:100px;
+}
+
+/* ============ Progress (autoplay timer) ============ */
+.slider-progress{
+  position:absolute;
+  top:0; left:0;
+  height:3px;
+  background:var(--gold);
+  width:0%;
+  z-index:5;
+}
+
+.page-footnote{
+  margin-top:18px;
+  text-align:center;
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px;
+  color:var(--text-muted);
+}
+
+/* ============ Responsive ============ */
+@media (max-width:640px){
+  .slide-overlay{ padding:22px 22px; }
+  .slider-arrow{ width:38px; height:38px; font-size:16px; }
+  .slider-arrow.prev{ left:10px; }
+  .slider-arrow.next{ right:10px; }
+  .slide-desc{ display:none; } /* keep mobile slides clean and uncluttered */
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; }
+}
