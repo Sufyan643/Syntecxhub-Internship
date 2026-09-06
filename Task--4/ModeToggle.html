@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daybreak — Theme Demo</title>
+  <script>
+    // Set the theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      var saved = localStorage.getItem("daybreak_theme");
+      var mode = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", mode);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="ModeToggle.css" />
+</head>
+<body>
+
+  <!-- Sky banner -->
+  <div class="sky" id="sky">
+    <div class="stars" id="stars"></div>
+    <svg class="horizon" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,80 C240,20 480,110 720,60 C960,10 1200,90 1440,40 L1440,120 L0,120 Z" />
+    </svg>
+  </div>
+
+  <div class="page">
+
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" id="brandMark">&#9728;</span>
+        <span class="brand-name">Daybreak</span>
+      </div>
+
+      <button
+        type="button"
+        class="theme-switch"
+        id="themeSwitch"
+        role="switch"
+        aria-checked="false"
+        aria-label="Toggle dark mode"
+      >
+        <span class="switch-track">
+          <span class="switch-icon switch-icon--sun">&#9728;</span>
+          <span class="switch-icon switch-icon--moon">&#9789;</span>
+        </span>
+        <span class="switch-thumb"></span>
+      </button>
+    </header>
+
+    <main class="content">
+      <section class="hero">
+        <p class="eyebrow" id="eyebrow">Currently reading in daylight</p>
+        <h1>A page that changes with the light.</h1>
+        <p class="lede">
+          Flip the switch in the corner — every color on this page, from the
+          sky above to the code block below, shifts to match. Your choice is
+          remembered the next time you visit.
+        </p>
+      </section>
+
+      <section class="card-grid">
+        <article class="info-card">
+          <span class="card-icon">&#9776;</span>
+          <h3>Built for reading</h3>
+          <p>Soft contrast and a calm palette in both modes, so long articles stay easy on the eyes at any hour.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-icon">&#9889;</span>
+          <h3>Instant, remembered</h3>
+          <p>The switch updates every color immediately and saves your preference in <code>localStorage</code>.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-icon">&#127760;</span>
+          <h3>Respects your system</h3>
+          <p>First-time visitors get a theme that matches their device settings, until they choose their own.</p>
+        </article>
+      </section>
+
+      <section class="quote-block">
+        <blockquote>
+          "Good dark mode isn't inverted colors — it's a second, deliberate
+          palette."
+        </blockquote>
+      </section>
+
+      <section class="code-block">
+        <div class="code-block-header">
+          <span></span><span></span><span></span>
+          <span class="code-filename">theme.js</span>
+        </div>
+        <pre><code><span class="code-comment">// Toggle the theme and remember the choice</span>
+<span class="code-kw">function</span> <span class="code-fn">setTheme</span>(mode) {
+  document.documentElement.setAttribute(<span class="code-str">"data-theme"</span>, mode);
+  localStorage.setItem(<span class="code-str">"theme"</span>, mode);
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built for Syntecxhub Internship — Project 3</p>
+    </footer>
+  </div>
+
+  <script src="ModeToggle.js"></script>
+</body>
+</html>

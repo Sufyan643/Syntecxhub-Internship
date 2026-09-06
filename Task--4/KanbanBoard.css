@@ -1,0 +1,310 @@
+/* ============================================================
+   Pinboard — a Kanban board styled as a corkboard with pinned
+   index cards. Color-coded columns carry status meaning:
+   amber = to-do, blue = in progress, green = done.
+   ============================================================ */
+
+:root {
+  --cork-base: #8a6240;
+  --cork-shadow: #6f4d31;
+  --paper: #fdfaf3;
+  --paper-edge: #e9e2d0;
+  --ink: #2b241c;
+  --ink-dim: #6b6156;
+
+  --todo: #e3a008;
+  --todo-dark: #9c6f06;
+  --doing: #2e86ab;
+  --doing-dark: #1f5c78;
+  --done: #4c9a6a;
+  --done-dark: #326b48;
+
+  --font-display: "Caveat", cursive;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background-color: var(--cork-base);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.08) 0, transparent 3%),
+    radial-gradient(circle at 60% 70%, rgba(0, 0, 0, 0.07) 0, transparent 3%),
+    radial-gradient(circle at 80% 15%, rgba(0, 0, 0, 0.06) 0, transparent 2.5%),
+    radial-gradient(circle at 40% 85%, rgba(0, 0, 0, 0.07) 0, transparent 3%),
+    radial-gradient(circle at 90% 60%, rgba(0, 0, 0, 0.06) 0, transparent 2.5%),
+    linear-gradient(160deg, var(--cork-base), var(--cork-shadow));
+  background-size: 140px 140px, 160px 160px, 130px 130px, 150px 150px, 170px 170px, cover;
+}
+
+.cork {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* ---------- Header ---------- */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 34px;
+  color: var(--paper);
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 56px;
+  margin: 0 0 4px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 14.5px;
+  color: rgba(253, 250, 243, 0.8);
+}
+
+/* ---------- Board layout ---------- */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.column {
+  background: rgba(253, 250, 243, 0.94);
+  border-radius: 10px;
+  padding: 0 0 14px;
+  min-height: 200px;
+  box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.column-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+}
+
+.column-head h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.column-head--todo { background: var(--todo); }
+.column-head--doing { background: var(--doing); }
+.column-head--done { background: var(--done); }
+
+.count {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.28);
+  padding: 2px 9px;
+  border-radius: 999px;
+  min-width: 22px;
+  text-align: center;
+}
+
+/* ---------- Card list / drop zone ---------- */
+
+.card-list {
+  flex: 1;
+  padding: 16px 16px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 80px;
+  transition: background 0.15s ease;
+  border-radius: 6px;
+}
+
+.card-list.drag-over {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.card-list:empty::before {
+  content: "No cards yet";
+  font-size: 13px;
+  color: var(--ink-dim);
+  font-style: italic;
+  padding: 6px 2px;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 4px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.35);
+  cursor: grab;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.card:nth-child(3n+1) { --tilt: -0.6deg; }
+.card:nth-child(3n+2) { --tilt: 0.5deg; }
+.card:nth-child(3n)   { --tilt: -0.3deg; }
+
+.card:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.4);
+}
+
+.card.is-dragging {
+  opacity: 0.4;
+}
+
+.card-text {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.45;
+  padding-right: 18px;
+  word-break: break-word;
+}
+
+.card-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 4px;
+  transition: color 0.12s ease, background 0.12s ease;
+}
+
+.card-remove:hover {
+  color: #b3261e;
+  background: rgba(179, 38, 30, 0.08);
+}
+
+.card-pin {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff8a7a, #b3261e 70%);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.column[data-status="todo"] .card-pin { background: radial-gradient(circle at 35% 30%, #ffd873, var(--todo-dark) 70%); }
+.column[data-status="doing"] .card-pin { background: radial-gradient(circle at 35% 30%, #8fd4ef, var(--doing-dark) 70%); }
+.column[data-status="done"] .card-pin { background: radial-gradient(circle at 35% 30%, #a4e2b8, var(--done-dark) 70%); }
+
+/* ---------- Add form ---------- */
+
+.add-form {
+  display: flex;
+  gap: 8px;
+  padding: 6px 16px 0;
+}
+
+.add-form input {
+  flex: 1;
+  border: 1px solid var(--paper-edge);
+  background: #fff;
+  border-radius: 6px;
+  padding: 9px 11px;
+  font-size: 13.5px;
+  font-family: var(--font-sans);
+  outline: none;
+  color: var(--ink);
+}
+
+.add-form input:focus-visible {
+  border-color: var(--ink-dim);
+}
+
+.add-form button {
+  width: 36px;
+  border: none;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.column[data-status="todo"] .add-form button { background: var(--todo-dark); }
+.column[data-status="doing"] .add-form button { background: var(--doing-dark); }
+.column[data-status="done"] .add-form button { background: var(--done-dark); }
+
+.add-form button:hover {
+  filter: brightness(1.1);
+}
+
+/* ---------- Footer ---------- */
+
+.page-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: rgba(253, 250, 243, 0.75);
+  font-size: 12.5px;
+}
+
+.clear-btn {
+  display: block;
+  margin: 0 auto 10px;
+  background: rgba(253, 250, 243, 0.14);
+  border: 1px solid rgba(253, 250, 243, 0.35);
+  color: var(--paper);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(253, 250, 243, 0.24);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header h1 {
+    font-size: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

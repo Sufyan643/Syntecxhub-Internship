@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinboard — Task Kanban</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="KanbanBoard.css" />
+</head>
+<body>
+
+  <div class="cork">
+
+    <header class="page-header">
+      <h1>Pinboard</h1>
+      <p class="subtitle">Drag a card to move it along. Nothing here is permanent — that's the point.</p>
+    </header>
+
+    <main class="board" id="board">
+
+      <!-- To-Do -->
+      <section class="column" data-status="todo">
+        <div class="column-head column-head--todo">
+          <h2>To&#8209;Do</h2>
+          <span class="count" id="count-todo">0</span>
+        </div>
+
+        <div class="card-list" id="list-todo" data-status="todo"></div>
+
+        <form class="add-form" data-status="todo">
+          <input type="text" placeholder="Add a task…" aria-label="Add a task to To-Do" required />
+          <button type="submit" aria-label="Add task">+</button>
+        </form>
+      </section>
+
+      <!-- Doing -->
+      <section class="column" data-status="doing">
+        <div class="column-head column-head--doing">
+          <h2>Doing</h2>
+          <span class="count" id="count-doing">0</span>
+        </div>
+
+        <div class="card-list" id="list-doing" data-status="doing"></div>
+
+        <form class="add-form" data-status="doing">
+          <input type="text" placeholder="Add a task…" aria-label="Add a task to Doing" required />
+          <button type="submit" aria-label="Add task">+</button>
+        </form>
+      </section>
+
+      <!-- Done -->
+      <section class="column" data-status="done">
+        <div class="column-head column-head--done">
+          <h2>Done</h2>
+          <span class="count" id="count-done">0</span>
+        </div>
+
+        <div class="card-list" id="list-done" data-status="done"></div>
+
+        <form class="add-form" data-status="done">
+          <input type="text" placeholder="Add a task…" aria-label="Add a task to Done" required />
+          <button type="submit" aria-label="Add task">+</button>
+        </form>
+      </section>
+
+    </main>
+
+    <footer class="page-footer">
+      <button type="button" id="clearBoard" class="clear-btn">Clear all cards</button>
+      <p>Built for Syntecxhub Internship — Project 2</p>
+    </footer>
+  </div>
+
+  <!-- Card template -->
+  <template id="cardTemplate">
+    <article class="card" draggable="true">
+      <button type="button" class="card-remove" aria-label="Remove task">&times;</button>
+      <p class="card-text"></p>
+      <span class="card-pin" aria-hidden="true"></span>
+    </article>
+  </template>
+
+  <script src="KanbanBoard.js"></script>
+</body>
+</html>
